@@ -1,0 +1,29 @@
+"""
+Contains various utility functions for PyTorch model training and saving.
+"""
+import torch
+
+from pathlib import Path
+
+def save_model(
+        model: torch.nn.Module,
+        target_dir: str,
+        model_name: str
+):
+    """
+    Saves a PyTorch model to a target directory.
+
+    Args:
+        model: a PyTorch model to be saved.
+        target_dir: a string containing the path to which the model is to be saved.
+        model_name: a string ending with ".pth" or ".pt" which indicates the name with which the model is to be saved.
+    """
+    target_dir_path = Path(target_dir)
+    target_dir_path.mkdir(parents=True, exist_ok=True)
+    assert model_name.endswith(".pth") or model_name.endswith(".pt")
+    model_save_path = target_dir_path / model_name
+    print(f"[INFO] Saving model to {model_save_path}")
+    torch.save(
+        obj=model.state_dict(),
+        f=model_save_path
+    )

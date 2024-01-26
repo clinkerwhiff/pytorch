@@ -9,7 +9,7 @@ data_path = Path("data/")
 image_path = data_path / "pizza_steak_sushi"
 
 # Checking if folder exists
-if image_path.isdir():
+if image_path.is_dir():
     print(f"{image_path} directory exists")
 else:
     print(f"Creating {image_path} directory")
